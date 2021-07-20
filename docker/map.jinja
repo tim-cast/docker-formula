@@ -27,10 +27,10 @@
 {%- set tplroot = tpldir.split('/')[0] %}
 
 {# Begin migration to new style map.jinja using tplroot for portability #}
-{% import_yaml tplroot ~ "/defaults.yaml" or {} as defaults %}
-{% import_yaml tplroot ~ "/osfamilymap.yaml" or {} as osfamilymap %}
-{% import_yaml tplroot ~ "/codenamemap.yaml" or {} as codemap %}
-{% import_yaml tplroot ~ "/osmap.yaml" or {} as osmap %}
+{% import_yaml tplroot ~ "/defaults.yaml" or {} as defaults with context %}
+{% import_yaml tplroot ~ "/osfamilymap.yaml" or {} as osfamilymap with context %}
+{% import_yaml tplroot ~ "/codenamemap.yaml" or {} as codemap with context %}
+{% import_yaml tplroot ~ "/osmap.yaml" or {} as osmap with context %}
 
 {% set pkg = salt['pillar.get']('docker-pkg:lookup', default={}, merge=True) %}
 {% do defaults.docker.pkg.update(pkg) %}
